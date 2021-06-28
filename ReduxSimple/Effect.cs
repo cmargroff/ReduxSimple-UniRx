@@ -10,12 +10,12 @@ namespace ReduxSimple
         /// <summary>
         /// Run function
         /// </summary>
-        public Func<ReduxStore<TState>, IObservable<object>>? Run { get; set; }
+        public Func<ReduxStore<TState>, IObservable<object>> Run { get; set; }
 
         /// <summary>
         /// Effect configuration
         /// </summary>
-        public EffectConfig? Config { get; set; }
+        public EffectConfig Config { get; set; }
     }
 
     /// <summary>

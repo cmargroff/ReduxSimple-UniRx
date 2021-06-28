@@ -76,7 +76,7 @@ namespace ReduxSimple
         [Obsolete("Please use the new version of CreateSubReducers.")]
         public static On<TState>[] CreateSubReducers<TState, TFeatureState>(
             On<TFeatureState>[] featureReducers,
-            ISelectorWithoutProps<TState, TFeatureState?> selectFeature
+            ISelectorWithoutProps<TState, TFeatureState> selectFeature
         )
             where TState : class, new()
             where TFeatureState : class, new()

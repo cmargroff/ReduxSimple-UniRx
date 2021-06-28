@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Reactive.Linq;
-using System.Reactive.Subjects;
+using UniRx;
 
 namespace ReduxSimple
 {
@@ -92,10 +91,11 @@ namespace ReduxSimple
         /// </returns>
         public IObservable<T> ObserveAction<T>(ActionOriginFilter filter = ActionOriginFilter.Normal)
         {
-            return _dispatchedAction
-                .Where(x => filter.HasFlag((ActionOriginFilter)x.Origin))
-                .Select(x => x.Action)
-                .OfType<T>();
+          return UniRx.Observable.OfType<object, T>(
+            _dispatchedAction
+            .Where(x => filter.HasFlag((ActionOriginFilter)x.Origin))
+            .Select(x => x.Action)
+            );
         }
     }
 }

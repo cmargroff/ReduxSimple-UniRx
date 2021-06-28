@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive.Concurrency;
-using System.Reactive.Linq;
-using System.Reactive.Subjects;
+using UniRx;
 
 namespace ReduxSimple
 {
@@ -42,9 +40,9 @@ namespace ReduxSimple
         /// <param name="dispatchedActionScheduler">Dispatched actions will be dispatched using the given scheduler. Defaults to <c>Scheduler.Default</c>.</param>
         public ReduxStore(
             IEnumerable<On<TState>> reducers,
-            TState? initialState,
+            TState initialState,
             bool enableTimeTravel = false,
-            IScheduler? dispatchedActionScheduler = null
+            IScheduler dispatchedActionScheduler = null
         )
         {
             AddReducers(reducers.ToArray());
@@ -53,7 +51,7 @@ namespace ReduxSimple
             TimeTravelEnabled = enableTimeTravel;
 
             _dispatchedAction = _dispatchedSubject
-                .ObserveOn(dispatchedActionScheduler ?? Scheduler.Default)
+                .ObserveOn(dispatchedActionScheduler ?? Scheduler.DefaultSchedulers.ConstantTimeOperations)
                 .Publish();
             _dispatchedAction.Connect();
 

@@ -12,7 +12,7 @@ namespace ReduxSimple
         /// <param name="dispatch">Specify if the run function should dispatch the output to the Store.</param>
         /// <returns>The generated effect.</returns>
         public static Effect<TState> CreateEffect<TState>(
-            Func<IObservable<object>> run, 
+            Func<IObservable<object>> run,
             bool dispatch
         )
             where TState : class, new()

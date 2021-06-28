@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Reactive.Linq;
+using UniRx;
 
 namespace ReduxSimple
 {

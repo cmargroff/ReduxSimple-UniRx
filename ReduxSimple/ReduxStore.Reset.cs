@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Reactive.Subjects;
+using UniRx;
 
 namespace ReduxSimple
 {

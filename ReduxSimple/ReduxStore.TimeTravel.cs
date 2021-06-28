@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive.Linq;
-using System.Reactive.Subjects;
+using UniRx;
 
 namespace ReduxSimple
 {
@@ -116,7 +115,7 @@ namespace ReduxSimple
         /// </returns>
         public IObservable<T> ObserveUndoneAction<T>()
         {
-            return _undoneActionSubject.OfType<T>();
+            return UniRx.Observable.OfType<object, T>(_undoneActionSubject);
         }
 
         /// <summary>
